@@ -3,6 +3,7 @@ const Wrapper = styled.div`
 width: 100%;
 .footer {
   color: white;
+  height: 10em;
 }
 
 
@@ -46,7 +47,7 @@ width: 100%;
 
 .footer .links {
   display: -ms-grid;
-  height: 20vh;
+  height: 12em;
   background: #286681;
 }
 

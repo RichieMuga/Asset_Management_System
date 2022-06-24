@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
+import { clearAlert } from './features.js/Alert';
 
 const user = localStorage.getItem('user')
 
@@ -35,6 +36,7 @@ const authenticationSlice = createSlice({
         logOutUser: (state) => {
             state.user = null
             localStorage.removeItem('user')
+            clearAlert()
         }
     },
     extraReducers: (builder) => {

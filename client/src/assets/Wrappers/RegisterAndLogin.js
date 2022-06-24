@@ -8,7 +8,7 @@ const Wrapper = styled.section`
 
   .form {
     max-width: 30em;
-    height: 100%;
+    height: 30em;
     border-top: 5px solid var(--primary-500);
     margin: 2em 0;
     background: var(--font-white);

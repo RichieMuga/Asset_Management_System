@@ -10,7 +10,7 @@ const dashboardSlice = createSlice({
         toggleSidebar: (state) => {
             state.isSidebarOpen = !state.isSidebarOpen
             state.showSidebar = !state.showSidebar
-        }
+        },
     }
 
 })

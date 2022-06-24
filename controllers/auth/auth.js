@@ -29,6 +29,8 @@ const login = async (req, res) => {
   const tokenUser = { role: user.role, userId: user._id, name: user.name }
 
   cookiesutils.attachCookiesToRes(res, tokenUser)
+  tokenUser.email = email
+
 
   res.status(StatusCodes.OK).json({ status: "success", user: tokenUser })
 }
@@ -61,6 +63,8 @@ const createsignupuser = async (req, res) => {
   // res.cookie('cookieYaKwanza', token, { expires: new Date(Date.now() + oneDay), httpOnly: true })
 
   cookiesutils.attachCookiesToRes(res, tokenUser)
+
+  tokenUser.email = email
 
   return res.status(StatusCodes.CREATED).json({ status: 'success', user: tokenUser })
 }

@@ -57,13 +57,13 @@ const RegisterAndLogin = () => {
       dispatch(getLoginUser(currentUser))
       setTimeout(() => {
         dispatch(clearAlert());
-      }, 6000);
+      }, 3000);
     }
     else {
       dispatch(getRegisteredUser(currentUser))
       setTimeout(() => {
         dispatch(clearAlert());
-      }, 6000);
+      }, 3000);
     }
   }
   //render on changing user value or when navigate is called upon

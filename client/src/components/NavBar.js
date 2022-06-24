@@ -6,6 +6,7 @@ import { FaAlignLeft, FaUserAlt } from 'react-icons/fa'
 // import { useAppContext } from '../context/appContext'
 // import { FaUserAlt } from "react-icons/fa";
 import { toggleSidebar } from '../redux-toolkit/Dashboard'
+import { clearAlert } from '../redux-toolkit/features.js/Alert';
 import { logOutUser } from '../redux-toolkit/loginAndregisterSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -19,6 +20,7 @@ const Navbar = () => {
     }
     const handleLogout = (e) => {
         e.preventDefault()
+        dispatch(clearAlert())
         dispatch(logOutUser())
     }
     return (

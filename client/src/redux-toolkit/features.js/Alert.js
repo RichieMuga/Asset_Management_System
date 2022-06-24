@@ -16,7 +16,7 @@ const alertSlice = createSlice({
         },
         clearAlert: (state) => {
             // setTimeout(() => {
-            state.showAlert = !state.showAlert;
+            state.showAlert = false;
             // }, 4000);
         }
     },
