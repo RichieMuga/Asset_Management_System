@@ -30,7 +30,7 @@ app.use(cookieParser(process.env.JWT_SECRET))
 app.use(express.urlencoded({ extended: false }))
 
 // server side rendering html pages in future using pug
-app.set('view engine', 'ejs')
+// app.set('view engine', 'ejs')
 
 //routes
 //user routes

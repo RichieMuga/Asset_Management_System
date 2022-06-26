@@ -3,7 +3,7 @@ const utils = require('../utils')
 
 const authentication = async (req, res, next) => {
     const token = req.signedCookies.cookieYaKwanza
-
+    console.log(req.signedCookies.cookieYaKwanza);
     if (!token) {
         throw new CustomErrors.BadRequestError('Invalid Authentication')
     }

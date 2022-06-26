@@ -8,6 +8,7 @@ require('dotenv').config()
 
 const getAllAssets = async (req, res) => {
     req.body.user = req.user.userId;
+    console.log(req.body.user);
     const { sort, Warranty, Type, Model, Address, fields } = req.query
     const reqQueryObject = {}
     //

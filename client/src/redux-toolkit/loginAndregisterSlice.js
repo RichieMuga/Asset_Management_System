@@ -29,6 +29,14 @@ export const getLoginUser = createAsyncThunk('auth/getLoginRes', async (currentU
     }
 })
 
+export const updateUser = createAsyncThunk('/api/v1/auth/update', async () => {
+    try {
+
+    } catch (error) {
+
+    }
+})
+
 const authenticationSlice = createSlice({
     name: 'auth',
     initialState: initialState,
@@ -37,7 +45,15 @@ const authenticationSlice = createSlice({
             state.user = null
             localStorage.removeItem('user')
             clearAlert()
-        }
+        },
+        //   handleChange: (state,action) => {
+        //     [action.payload.name]:action.payload.value
+        // }
+        // updateUser: (state, action) => {
+        //     state.user.name = action.payload.name
+        //     state.user.role = action.payload.role
+        //     state.user.email = action.payload.email
+        // }
     },
     extraReducers: (builder) => {
         builder
