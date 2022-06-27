@@ -32,6 +32,7 @@ const login = async (req, res) => {
 
   attachCookiesToRes(res, tokenUser)
   // console.log(tokenUser);
+  tokenUser.email = email
 
   res.status(StatusCodes.OK).json({ status: "success", user: tokenUser })
 }
@@ -58,6 +59,8 @@ const createsignupuser = async (req, res) => {
 
 
   attachCookiesToRes(res, tokenUser)
+  tokenUser.email = email
+
 
   return res.status(StatusCodes.CREATED).json({ status: 'success', user: tokenUser })
 }

@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios';
 import { clearAlert } from './features.js/Alert';
 
+
 const user = localStorage.getItem('user')
 
 const initialState = {
@@ -29,13 +30,17 @@ export const getLoginUser = createAsyncThunk('auth/getLoginRes', async (currentU
     }
 })
 
-export const updateUser = createAsyncThunk('/api/v1/auth/update', async () => {
+export const updateUser = createAsyncThunk('auth/updateUserRes', async (updatedUser, thunkAPI) => {
     try {
-
+        const res = await axios.patch('/api/v1/auth/update', updatedUser)
+        // console.log(res.data.findUser);
+        return res.data.findUser
     } catch (error) {
-
+        return thunkAPI.rejectWithValue(error.response.data.msg)
     }
 })
+
+
 
 const authenticationSlice = createSlice({
     name: 'auth',
@@ -44,6 +49,7 @@ const authenticationSlice = createSlice({
         logOutUser: (state) => {
             state.user = null
             localStorage.removeItem('user')
+            // document.cookie = 'cookieYaKwanza;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
             clearAlert()
         },
         //   handleChange: (state,action) => {
@@ -74,11 +80,17 @@ const authenticationSlice = createSlice({
                 }
                 addUserToLocalStorage(action.payload.user)
             })
+            //updateUser
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.user.name = action.payload.name
+                state.user.email = action.payload.email
+                state.user.role = action.payload.role
+            })
 
     },
 })
 
-export const { registerUser, loginUser, getCurrentUser, logOutUser } = authenticationSlice.actions
+export const { registerUser, loginUser, logOutUser } = authenticationSlice.actions
 
 export default authenticationSlice.reducer
 

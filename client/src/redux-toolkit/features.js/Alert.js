@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getRegisteredUser, getLoginUser } from '../loginAndregisterSlice'
+import { getRegisteredUser, getLoginUser, updateUser } from '../loginAndregisterSlice'
 const initialState = {
     showAlert: false,
     alertText: '',
@@ -22,6 +22,7 @@ const alertSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            //login
             .addCase(getLoginUser.fulfilled, (state, action) => {
                 state.showAlert = true
                 state.alertType = action.payload.status
@@ -33,13 +34,25 @@ const alertSlice = createSlice({
                 state.showAlert = true
                 state.alertText = action.payload
             })
+            //register
             .addCase(getRegisteredUser.fulfilled, (state, action) => {
                 state.showAlert = true
                 state.alertType = action.payload.status
                 state.alertText = ' Registered successfully. Redirecting...'
             }
             )
+            //update user
             .addCase(getRegisteredUser.rejected, (state, action) => {
+                state.alertType = 'danger'
+                state.showAlert = true
+                state.alertText = action.payload
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.showAlert = true
+                state.alertType = 'success'
+                state.alertText = ' Updated profile successfully...'
+            })
+            .addCase(updateUser.rejected, (state, action) => {
                 state.alertType = 'danger'
                 state.showAlert = true
                 state.alertText = action.payload
