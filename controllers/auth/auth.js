@@ -22,7 +22,7 @@ const login = async (req, res) => {
   }
   const passwordismatch = await user.comparePassword(password);
   if (!passwordismatch) {
-    throw new BadRequestError('invalid password')
+    throw new BadRequestError('Invalid password')
   }
   // const usernameAndEmail = { username: user.username, Email: user.Email }
   // employeeId: user.employeeId
@@ -50,22 +50,12 @@ const createsignupuser = async (req, res) => {
   if (userAlreadyHasAccount) {
     throw new BadRequestError('Email already in use')
   }
-  // to check if the email is in use, but in this project we will use the mongoose schema instead
-  // const emailAlreadyExists = await User.findOne({ Email })
-  // if (emailAlreadyExists) {
-  //   throw new BadRequestError('email already exists')
-  // }
+  //company and employeeId to add to the User.create
   const person = await User.create({ name, email, password, confirmPassword, role, company, employeeId })
   // const usernameAndEmail = { username, Email }
-  const tokenUser = { role: person.role, userId: person._id, name: person.name, employeeId: person.employeeId, company: person.company }
+  // company and employeeId to add to the token user
+  const tokenUser = { role: person.role, userId: person._id, name: person.name }
 
-  // const token = await jwt.sign(tokenUser, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME })
-
-  // const token = jwts.signtoken({ payload: tokenUser }) to create jwt token
-
-  // const oneDay = 86400
-
-  // res.cookie('cookieYaKwanza', token, { expires: new Date(Date.now() + oneDay), httpOnly: true })
 
   attachCookiesToRes(res, tokenUser)
 
@@ -77,7 +67,30 @@ const logout = async (req, res) => {
   res.status(StatusCodes.ACCEPTED).json({ msg: 'user logged out' })
 }
 
+const updateUser = async (req, res) => {
+  const { name, email, role } = req.body
+  const { userId } = req.user
+  //check and make sure re.body is not empty
+  if (!name || !email || !role) {
+    throw new BadRequestError('Please enter appropriate values')
+  }
+
+  const findUser = await User.findOneAndUpdate({ _id: userId }, { role, email, name }, { new: true, upsert: true })
+
+  // findUser.role = role
+  // findUser.name = name
+  // findUser.email = email
+
+  // const saveUser = await findUser.save()
+
+  // attachCookiesToRes(res, tokenUser)
+
+  res.status(StatusCodes.OK).json({ findUser })
+
+
+}
 
 
 
-module.exports = { createsignupuser, login, logout }
+
+module.exports = { createsignupuser, login, logout, updateUser }
