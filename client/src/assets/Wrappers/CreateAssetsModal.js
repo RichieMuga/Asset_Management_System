@@ -11,13 +11,24 @@ const Wrapper = styled.div`
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
   
-  .modal-content{
+.modal-content{
     margin: auto;
+    margin-top:.8em ;
     background: var(--font-white);
     height: 90%;
-    width: 60%;
+    width:70%;
     border-radius: 5px;
   }
+.close-btn {
+    background: transparent;
+    border-color: transparent;
+    font-size: 2rem;
+    color: var(--deep-red);
+    margin-top: .5em;
+    margin-left: .5em;
+    cursor: pointer;
+  }
+  
 `
 
 export default Wrapper
