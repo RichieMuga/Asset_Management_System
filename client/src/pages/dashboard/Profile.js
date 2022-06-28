@@ -53,7 +53,7 @@ const Profile = () => {
 
     return (
         <div>
-            <h1>Profile</h1>
+            <h1 className='heading-dashboard'>Profile</h1>
             <Wrapper>
                 <form className="form" >
                     {showAlert && <Alert />}

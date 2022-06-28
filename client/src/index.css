@@ -79,6 +79,19 @@ h5 {
   font-weight: 400;
   margin-top: 0.2em;
 }
+.green-btn {
+  background: var(--jungle-green);
+  color: var(--font-white);
+  border-radius: var(--borderRadius);
+  padding: 0.2em 0.8em;
+  width: auto;
+  /* height: auto; */
+  /* padding: 0.2em 0.8em; */
+  /* height: 8em; */
+}
+.green-btn:hover {
+  opacity: 0.5;
+}
 
 .btn-purple:hover {
   cursor: pointer;
@@ -172,4 +185,10 @@ h5 {
   background: var(--grey-textArea);
   border: 1px solid var(--font-black);
   background-color: rgba(0, 0, 0, 0.15);
+}
+.heading-dashboard {
+  font-size: 1.5em;
+}
+.width-min-form {
+  width: 20px;
 }

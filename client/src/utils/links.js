@@ -13,7 +13,7 @@ const links = [
     {
         id: 1,
         text: 'Assets',
-        path: '/',
+        path: 'assets',
         icon: <FaHome />,
     },
     {
