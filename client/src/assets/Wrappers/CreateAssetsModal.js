@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     margin: auto;
     margin-top:.8em ;
     background: var(--font-white);
-    height: 90%;
+    height: fit-content;
     width:70%;
     border-radius: 5px;
   }
@@ -28,7 +28,23 @@ const Wrapper = styled.div`
     margin-left: .5em;
     cursor: pointer;
   }
-  
+  .form-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-row-gap: 2em;
+    grid-column-gap: 4em;
+    padding: 0 4em;
+  }
+  .btn-both{
+    height: 3em;
+    width: 6em;
+  }
+  .stepper-image{
+    margin: .5em auto;
+    height: 3em;
+  }
+
 `
 
 export default Wrapper

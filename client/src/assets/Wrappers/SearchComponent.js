@@ -27,7 +27,7 @@ const Wrapper = styled.div`
     height: 65%;
     gap: .5em;
     width:auto;
-    background-color: purple;
+    background-color: var(--purple-primary);
     border: none;
     color: var(--font-white);
     padding: .5em .5em;

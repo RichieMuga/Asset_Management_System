@@ -79,6 +79,25 @@ h5 {
   font-weight: 400;
   margin-top: 0.2em;
 }
+.btn-purple2-alt {
+  background-color: var(--font-white);
+  border: none;
+  color: var(--purple-primary);
+  padding: 0.2em 0.8em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 400;
+  margin-top: 0.2em;
+  border: 2px solid;
+  border-color: var(--purple-primary);
+}
+.btn-purple2-alt:hover {
+  cursor: pointer;
+  background-color: var(--purple-primary);
+  color: var(--font-white);
+}
 .green-btn {
   background: var(--jungle-green);
   color: var(--font-white);
@@ -191,4 +210,10 @@ h5 {
 }
 .width-min-form {
   width: 20px;
+}
+.header {
+  color: rgb(40, 102, 129);
+  font-size: 1.5rem;
+  text-align: center;
+  padding-bottom: 0.5em;
 }
