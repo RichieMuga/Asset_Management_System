@@ -26,10 +26,6 @@ const AssetDetailsSchema = new mongoose.Schema({
         required: [true, 'Please provide serial number'],
         unique: true
     },
-    EmployeeNumber: {
-        type: String,
-        required: [true, 'Please enter employee Id']
-    },
     Model: {
         type: String,
     },
@@ -42,6 +38,11 @@ const AssetDetailsSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     },
+    condition: {
+        type: String,
+        enum: ['Good', 'Bad', 'Excellent', 'New', 'Poor'],
+        required: [true, 'Please enter condition of the asset']
+    }
 },
     { timestamps: true }
 )

@@ -31,20 +31,38 @@ const Wrapper = styled.div`
   .form-content{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-row-gap: 2em;
+    grid-template-rows: auto ;
+    grid-row-gap: 1em;
+    grid-column-gap: 4em;
+    padding: 0 4em;
+  }
+  .form-content2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-row-gap: 1em;
     grid-column-gap: 4em;
     padding: 0 4em;
   }
   .btn-both{
     height: 3em;
     width: 6em;
+    margin-bottom: 2em;
+    /* grid-column-start:1; */
   }
   .stepper-image{
-    margin: .5em auto;
+    padding: 0.4em .7em;
+    margin: 0 auto;
     height: 3em;
   }
-
+  .green-header{
+    color:#00A877;
+    text-align: center;
+    padding: 1em;
+}
+.box {
+  margin-right: 1.2em;
+}
 `
 
 export default Wrapper

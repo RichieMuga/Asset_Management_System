@@ -33,6 +33,7 @@ const Wrapper = styled.div`
     padding: .5em .5em;
     text-align: center;
     border-radius: 5px;
+    margin: 1em 0;
   }
   .createAsset span{
     position: relative;

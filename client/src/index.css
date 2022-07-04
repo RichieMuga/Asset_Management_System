@@ -92,6 +92,7 @@ h5 {
   margin-top: 0.2em;
   border: 2px solid;
   border-color: var(--purple-primary);
+  grid-column-start: 1;
 }
 .btn-purple2-alt:hover {
   cursor: pointer;

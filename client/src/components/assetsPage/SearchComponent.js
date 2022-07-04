@@ -16,7 +16,6 @@ const SearchComponent = () => {
   const handleModal = (e) => {
     e.preventDefault()
     dispatch(toggleAssetSidebar())
-    console.log(isAssetModalOpen);
   }
   const handleSearch = (e) => {
     e.preventDefault()
@@ -24,18 +23,18 @@ const SearchComponent = () => {
   }
   return (
     <Wrapper>
-      <section className={`container-main`} >
-        {isAssetModalOpen && <CreateAssetsModal />}
-        <form className='form-serious '>
-          <div className={`form-holder`}>
-            <FormRow type="text" placeholder={'search by name or tag'} className='width-min-form' />
-            <button type="submit" className='green-btn' onClick={handleSearch}>Search</button>
-          </div>
-        </form>
-        <button type="submit" className='createAsset' onClick={handleModal}><span className='plusSign'><GoPlus size={17} /> </span>  Create Asset</button>
-        {/* {isAssetModalOpen && <CreateAssetsModal />} */}
 
+      <section  >
+        <button type="submit" className='createAsset' onClick={handleModal}><span className='plusSign'><GoPlus size={17} /> </span>  Create Asset</button>
+        {isAssetModalOpen && <CreateAssetsModal />}
+        {/* {isAssetModalOpen && <CreateAssetsModal />} */}
       </section>
+      <form className='form-serious '>
+        <div className={`form-holder`}>
+          <FormRow type="text" placeholder={'search by name or tag'} className='width-min-form' />
+          <button type="submit" className='green-btn' onClick={handleSearch}>Search</button>
+        </div>
+      </form>
     </Wrapper>
   )
 }
