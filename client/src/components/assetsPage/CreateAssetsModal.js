@@ -1,5 +1,6 @@
 import React from 'react'
-import { toggleAssetSidebar, onClickNext, onClickPrevious } from '../../redux-toolkit/Dashboard'
+import { onClickNext, onClickPrevious, handleChange } from '../../redux-toolkit/assets'
+import { toggleAssetSidebar } from '../../redux-toolkit/Dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 import Wrapper from '../../assets/Wrappers/CreateAssetsModal'
 import { FaTimes } from 'react-icons/fa'
@@ -15,7 +16,7 @@ import conditions from '../../utils/frontEnd/condition'
 
 const CreateAssetsModal = () => {
     const dispatch = useDispatch()
-    const { isAssetStepperNext } = useSelector((store => store.dashboard))
+    const { isAssetStepperNext } = useSelector((store => store.assets))
 
     const {
         asset_Name,
@@ -26,10 +27,11 @@ const CreateAssetsModal = () => {
         assetSN,
         condition,
         address,
-        warranty } = useSelector((store => store.dashboard))
+        warranty } = useSelector((store => store.assets))
 
     const handleClose = (e) => {
         e.preventDefault()
+        // console.log("close");
         dispatch(toggleAssetSidebar())
     }
 
@@ -37,8 +39,13 @@ const CreateAssetsModal = () => {
 
     const handleNext = (e) => {
         e.preventDefault()
+        if (!asset_Name || !assetTypes || !model || !tagNum || !empId || !assetSN) {
+            console.log("please enter all values before proceeding!");
+        }
+        else {
+            dispatch(onClickNext())
+        }
 
-        dispatch(onClickNext())
     }
     const handlePrevious = (e) => {
         e.preventDefault()
@@ -50,6 +57,13 @@ const CreateAssetsModal = () => {
         console.log('save');
     }
 
+    const handleInputs = (e) => {
+        // dispatch(handleChange({ name: e.target.name, value: e.target.value }))
+        const name = e.target.name
+        const value = e.target.value
+        // console.log(`${name}:${value}`);
+        dispatch(handleChange({ name, value }))
+    }
     return (
         <Wrapper>
             <div className='modal-content'>
@@ -66,12 +80,12 @@ const CreateAssetsModal = () => {
                             <section>
                                 <h3 className='green-header'>Asset details</h3>
                                 <div className="form-content">
-                                    <FormRow type="text" name="asset" labelText='Asset Name' value={asset_Name} />
-                                    <FormRowSelect type="text" name="assetType" list={assetTypes} labelText='Asset Type' value={assetType} />
-                                    <FormRow type="text" name="model" labelText='Model' value={model} />
-                                    <FormRow type="text" name="tagNum" labelText='Tag Number' value={tagNum} />
-                                    <FormRow type="text" name="empId" labelText='Employee Id' value={empId} />
-                                    <FormRow type="text" name="assetSN" labelText='Asset SN.' value={assetSN} />
+                                    <FormRow type="text" name="asset_Name" labelText='Asset Name' value={asset_Name} handleChange={handleInputs} />
+                                    <FormRowSelect type="text" name="assetType" list={assetTypes} labelText='Asset Type' value={assetType} handleChange={handleInputs} />
+                                    <FormRow type="text" name="model" labelText='Model' value={model} handleChange={handleInputs} />
+                                    <FormRow type="text" name="tagNum" labelText='Tag Number' value={tagNum} handleChange={handleInputs} />
+                                    <FormRow type="text" name="empId" labelText='Employee Id' value={empId} handleChange={handleInputs} />
+                                    <FormRow type="text" name="assetSN" labelText='Asset SN.' value={assetSN} handleChange={handleInputs} />
                                     <button className='btn-both btn-purple2-alt' onClick={handlePrevious}>Previous</button>
                                     <button className="btn-both btn-purple2" onClick={handleNext}>Next</button>
                                 </div>
@@ -82,9 +96,9 @@ const CreateAssetsModal = () => {
                                 <div className='form-content2'>
                                     {/* <h3> Address,warranty and Save</h3> */}
                                     {/* <FormRow type="text" name="asset_Name" labelText='Asset Name' /> */}
-                                    <FormRowSelect type="text" name="condition" list={conditions} value={condition} labelText='Condition' />
-                                    <FormRow type="text" name="address" labelText='Address' value={address} />
-                                    <FormCheckBox labelText="Warranty" name="warranty" value={warranty} />
+                                    <FormRowSelect type="text" name="condition" list={conditions} value={condition} labelText='Condition' handleChange={handleInputs} />
+                                    <FormRow type="text" name="address" labelText='Address' value={address} handleChange={handleInputs} />
+                                    <FormCheckBox labelText="Warranty" name="warranty" value={warranty} handleChange={handleInputs} />
                                     <button className='btn-both btn-purple2-alt' onClick={handlePrevious}>Previous</button>
                                     <button type='submit' className="btn-both btn-purple2" onClick={handleSave}>Save</button>
                                 </div>
