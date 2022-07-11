@@ -23,6 +23,11 @@ const alertSlice = createSlice({
             setTimeout(() => {
                 state.showAlert = false
             }, 3000);
+        },
+        customAlert: (state, action) => {
+            state.showAlert = true
+            state.alertType = action.payload.type
+            state.alertText = action.payload.msg
         }
     },
     extraReducers: (builder) => {
@@ -76,6 +81,6 @@ const alertSlice = createSlice({
     }
 })
 
-export const { displayDanger, clearAlert, displayIncorrectEmail, clearAlertAfterSomeTime } = alertSlice.actions
+export const { displayDanger, clearAlert, displayIncorrectEmail, clearAlertAfterSomeTime, customAlert } = alertSlice.actions
 
 export default alertSlice.reducer

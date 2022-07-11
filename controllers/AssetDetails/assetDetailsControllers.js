@@ -53,15 +53,15 @@ const getAllAssets = async (req, res) => {
 }
 const createAsset = async (req, res) => {
     req.body.user = req.user.userId;
-    const { body: { AssetName, TagNumber, AssetSn, EmployeeNumber, Model, Address, Warranty, Type, user }, user: { userId } } = req
-    if (!AssetName || !TagNumber || !AssetSn || !EmployeeNumber || !Address) {
+    const { body: { asset_Name, tagNum, assetSN, model, address, warranty, assetType, condition, user }, user: { userId } } = req
+    if (!asset_Name || !tagNum || !assetSN || !address || !model || !warranty || !assetType) {
         throw new CustomError.UnauthenticatedError('please provide appropriate credentials to streamline refrencing in future')
     }
     // another way for doing this
     // user = userId
     // console.log(req.body)
     // const asset = await AssetDetails.create(req.body)
-    const asset = await AssetDetails.create({ AssetName, TagNumber, AssetSn, EmployeeNumber, Model, Address, Warranty, Type, user: userId })
+    const asset = await AssetDetails.create({ asset_Name, tagNum, assetSN, model, address, warranty, assetType, condition, user: userId })
     res.status(StatusCodes.CREATED).json({ asset })
 }
 const getSingleAssets = async (req, res) => {

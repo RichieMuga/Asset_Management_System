@@ -2,34 +2,34 @@ const mongoose = require('mongoose')
 
 const AssetDetailsSchema = new mongoose.Schema({
 
-    AssetName: {
+    asset_Name: {
         type: String,
         min: [2, 'This length is not accepted please try again'],
         required: [true, 'Kindly provide an asset name']
     },
-    Type: {
+    assetType: {
         type: String,
         enum: ['monitor', 'keyboard', 'mouse', 'projector', 'laptop', 'desktop', 'printer', 'tv'],
         required: [false, 'Kindly enter an assset type ']
     },
-    TagNumber: {
+    tagNum: {
         type: String,
         required: [true, 'Kindly enter a tag number'],
         unique: true
     },
-    Warranty: {
+    warranty: {
         type: Boolean,
         default: false
     },
-    AssetSn: {
+    assetSN: {
         type: String,
         required: [true, 'Please provide serial number'],
         unique: true
     },
-    Model: {
+    model: {
         type: String,
     },
-    Address: {
+    address: {
         type: String,
         required: [false, 'Please enter address']
     },

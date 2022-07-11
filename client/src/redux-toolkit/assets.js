@@ -9,16 +9,16 @@ const initialState = {
     assetType: 'monitor',
     model: '',
     tagNum: '',
-    empId: '',
     assetSN: '',
-    condition: '',
+    condition: 'Good',
     address: '',
     warranty: false
 }
 // create asset request
-export const createAsset = createAsyncThunk('/api/v1/assets', async (assetDetails, thunkAPI) => {
+export const createAsset = createAsyncThunk('/api/v1/assets', async (currentAsset, thunkAPI) => {
     try {
-        const res = await axios.post('/api/v1/assets', assetDetails)
+        const res = await axios.post('/api/v1/assets', currentAsset)
+        console.log(res.data);
         return res.data
     } catch (error) {
         thunkAPI.rejectWithValue(error.response.data.msg)
@@ -45,7 +45,14 @@ const assetsSlice = createSlice({
             // console.log(state.asset_Name);
             // console.log(action.payload);
         }
-    }
+    },
+    extraReducers:
+        (builder) => {
+            builder
+                .addCase(createAsset.fulfilled, (state, action) => {
+                    state = initialState
+                })
+        }
 
 })
 
