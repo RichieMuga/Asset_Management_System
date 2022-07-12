@@ -18,10 +18,13 @@ const dashboardSlice = createSlice({
         toggleAssetSidebar: (state) => {
             state.isAssetModalOpen = !state.isAssetModalOpen
         },
+        closeAssetModal: (state) => {
+            state.isAssetModalOpen = false
+        }
     }
 
 })
 
-export const { toggleSidebar, toggleAssetSidebar } = dashboardSlice.actions
+export const { toggleSidebar, toggleAssetSidebar, closeAssetModal } = dashboardSlice.actions
 
 export default dashboardSlice.reducer

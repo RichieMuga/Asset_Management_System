@@ -70,10 +70,14 @@ const authenticationSlice = createSlice({
                     localStorage.setItem('user', JSON.stringify(user))
                 }
                 addUserToLocalStorage(action.payload.user)
+                // const oneDay = 1000 * 60 * 60 * 24
+                // const removeAfterCookieExpires=()=>{
+                //     localStorage.removeItem()
+                // }
+                // removeAfterCookieExpires()
             })
             // login
             .addCase(getLoginUser.fulfilled, (state, action) => {
-                state.isLoading = false;
                 state.user = action.payload.user
                 const addUserToLocalStorage = (user) => {
                     localStorage.setItem('user', JSON.stringify(user))

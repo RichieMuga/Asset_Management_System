@@ -6,7 +6,7 @@ const attachCookiesToRes = (res, user) => {
     const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: process.env.JWT_LIFETIME })
     // console.log(token);
 
-    const result = res.cookie('cookieYaKwanza', token, { expires: new Date(Date.now() + oneDay), httpOnly: true, secure: process.env.NODE_ENV === 'production', signed: true, sameSite: process.env.NODE_ENV === 'production' })
+    const result = res.cookie('cookieYaKwanza', token, { expires: new Date(Date.now() + oneDay), httpOnly: true, secure: process.env.NODE_ENV === 'production', signed: true, SameSite: process.env.NODE_ENV === 'production' })
     return result
 }
 

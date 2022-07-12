@@ -1,7 +1,7 @@
 import React from 'react'
-import { onClickNext, onClickPrevious, handleChange } from '../../redux-toolkit/assets'
+import { onClickNext, onClickPrevious, handleChange, reset } from '../../redux-toolkit/assets'
 import { customAlert, clearAlert } from '../../redux-toolkit/features.js/Alert'
-import { toggleAssetSidebar } from '../../redux-toolkit/Dashboard'
+import { toggleAssetSidebar, closeAssetModal } from '../../redux-toolkit/Dashboard'
 import { useDispatch, useSelector } from 'react-redux'
 import { createAsset } from '../../redux-toolkit/assets'
 import Wrapper from '../../assets/Wrappers/CreateAssetsModal'
@@ -63,6 +63,12 @@ const CreateAssetsModal = () => {
 
     const handleSave = (e) => {
         e.preventDefault()
+        if (!address) {
+            dispatch(customAlert({ type: 'danger', msg: "Please fill in all fields" }))
+            setTimeout(() => {
+                dispatch(clearAlert())
+            }, 2000);
+        }
         // console.log('save');
         const currentAsset = {
             asset_Name,
@@ -75,8 +81,13 @@ const CreateAssetsModal = () => {
             warranty
         }
         dispatch(createAsset(currentAsset))
-        console.log(currentAsset);
 
+
+        setTimeout(() => {
+            dispatch(closeAssetModal())
+            dispatch(clearAlert())
+            dispatch(reset())
+        }, 5000);
     }
 
     const handleInputs = (e) => {

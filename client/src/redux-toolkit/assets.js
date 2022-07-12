@@ -11,7 +11,7 @@ const initialState = {
     tagNum: '',
     assetSN: '',
     condition: 'Good',
-    address: '',
+    address: 'Nairobi, Kenya',
     warranty: false
 }
 // create asset request
@@ -44,18 +44,19 @@ const assetsSlice = createSlice({
             state[name] = value
             // console.log(state.asset_Name);
             // console.log(action.payload);
-        }
+        },
+        reset: () => initialState,
     },
-    extraReducers:
-        (builder) => {
-            builder
-                .addCase(createAsset.fulfilled, (state, action) => {
-                    state = initialState
-                })
-        }
+    // extraReducers:
+    //     (builder) => {
+    //         builder
+    //             .addCase(createAsset.fulfilled, (state, action) => {
+    //                 console.log("success");
+    //             })
+    //     }
 
 })
 
-export const { toggleAssetSidebar, onClickNext, onClickPrevious, handleChange } = assetsSlice.actions
+export const { toggleAssetSidebar, onClickNext, onClickPrevious, handleChange, reset } = assetsSlice.actions
 
 export default assetsSlice.reducer

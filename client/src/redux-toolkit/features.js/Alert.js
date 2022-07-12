@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getRegisteredUser, getLoginUser, updateUser } from '../loginAndregisterSlice'
+import { createAsset } from "../assets";
+// import { createAsset } from "../assets";
 const initialState = {
     showAlert: false,
     alertText: '',
@@ -77,6 +79,16 @@ const alertSlice = createSlice({
                 state.alertText = action.payload
                 clearAlertAfterSomeTime();
 
+            })
+            .addCase(createAsset.fulfilled, (state, action) => {
+                state.showAlert = true
+                state.alertType = 'success'
+                state.alertText = ' Asset created!'
+            })
+            .addCase(createAsset.rejected, (state, action) => {
+                state.alertType = 'danger'
+                state.showAlert = true
+                state.alertText = action.payload
             })
     }
 })

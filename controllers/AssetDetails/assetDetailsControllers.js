@@ -54,7 +54,7 @@ const getAllAssets = async (req, res) => {
 const createAsset = async (req, res) => {
     req.body.user = req.user.userId;
     const { body: { asset_Name, tagNum, assetSN, model, address, warranty, assetType, condition, user }, user: { userId } } = req
-    if (!asset_Name || !tagNum || !assetSN || !address || !model || !warranty || !assetType) {
+    if (!asset_Name || !tagNum || !assetSN || !address || !model || !warranty || !assetType || !condition) {
         throw new CustomError.UnauthenticatedError('please provide appropriate credentials to streamline refrencing in future')
     }
     // another way for doing this
