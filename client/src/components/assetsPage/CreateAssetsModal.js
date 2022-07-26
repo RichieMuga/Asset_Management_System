@@ -1,5 +1,5 @@
 import React from 'react'
-import { onClickNext, onClickPrevious, handleChange, reset } from '../../redux-toolkit/assets'
+import { onClickNext, onClickPrevious, handleChange, reset, setRefreshTofalse } from '../../redux-toolkit/assets'
 import { customAlert, clearAlert } from '../../redux-toolkit/features.js/Alert'
 import { toggleAssetSidebar, closeAssetModal } from '../../redux-toolkit/Dashboard'
 import { useDispatch, useSelector } from 'react-redux'
@@ -33,6 +33,7 @@ const CreateAssetsModal = () => {
 
     // import showAlert
     const { showAlert } = useSelector((store) => store.alert)
+
 
     const handleClose = (e) => {
         e.preventDefault()
@@ -69,25 +70,30 @@ const CreateAssetsModal = () => {
                 dispatch(clearAlert())
             }, 2000);
         }
-        // console.log('save');
-        const currentAsset = {
-            asset_Name,
-            assetType,
-            model,
-            tagNum,
-            assetSN,
-            condition,
-            address,
-            warranty
+        else {
+            // console.log('save');
+            const currentAsset = {
+                asset_Name,
+                assetType,
+                model,
+                tagNum,
+                assetSN,
+                condition,
+                address,
+                warranty
+            }
+            dispatch(setRefreshTofalse())
+            dispatch(createAsset(currentAsset))
+            // setTimeout(() => {
+            //     dispatch(clearAlert())
+            // }, 2000);
+            setTimeout(() => {
+                dispatch(clearAlert())
+                dispatch(closeAssetModal())
+                dispatch(reset())
+            }, 3000);
+
         }
-        dispatch(createAsset(currentAsset))
-
-
-        setTimeout(() => {
-            dispatch(closeAssetModal())
-            dispatch(clearAlert())
-            dispatch(reset())
-        }, 5000);
     }
 
     const handleInputs = (e) => {

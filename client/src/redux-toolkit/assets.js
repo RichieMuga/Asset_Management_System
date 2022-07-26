@@ -19,10 +19,12 @@ const initialState = {
     assets: [],
     totalAssets: 0,
     numOfPages: 1,
-    page: 1
+    page: 1,
+    // trigger-refresh
+    refresh: false
 }
 // create asset request
-export const createAsset = createAsyncThunk('/api/v1/assets', async (currentAsset, thunkAPI) => {
+export const createAsset = createAsyncThunk('/api/v1/assets/createAsset', async (currentAsset, thunkAPI) => {
     try {
         const res = await axios.post('/api/v1/assets', currentAsset)
         // console.log(res.data);
@@ -33,7 +35,7 @@ export const createAsset = createAsyncThunk('/api/v1/assets', async (currentAsse
 })
 // get all Assets
 
-export const getAssets = createAsyncThunk('/api/v1/assets', async (thunkAPI) => {
+export const getAssets = createAsyncThunk('/api/v1/assets/getAsset', async (thunkAPI) => {
     try {
         const res = await axios.get('/api/v1/assets')
         console.log(res.data);
@@ -65,6 +67,9 @@ const assetsSlice = createSlice({
             // console.log(action.payload);
         },
         reset: () => initialState,
+        setRefreshTofalse: (state, action) => {
+            state.refresh = false
+        }
     },
     extraReducers:
         (builder) => {
@@ -73,12 +78,13 @@ const assetsSlice = createSlice({
                     // console.log(action);
                     state.assets = action.payload.assetResult
                     state.totalAssets = action.payload.count
+                    state.refresh = true
                     // console.log(state.assets);
                 })
         }
 
 })
 
-export const { toggleAssetSidebar, onClickNext, onClickPrevious, handleChange, reset } = assetsSlice.actions
+export const { toggleAssetSidebar, onClickNext, onClickPrevious, handleChange, reset, setRefreshTofalse } = assetsSlice.actions
 
 export default assetsSlice.reducer

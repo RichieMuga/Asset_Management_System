@@ -71,7 +71,7 @@ const RegisterAndLogin = () => {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate("/")
+        navigate("/assets")
       }, 2000);
     }
 

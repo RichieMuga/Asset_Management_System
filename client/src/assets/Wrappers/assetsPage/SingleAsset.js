@@ -39,6 +39,9 @@ h4{
 .assetName{
     opacity: .8;
 }
+.circle{
+    margin-top:.35em;
+}
  
 @media (min-width: 370px) {
     .more-info{
