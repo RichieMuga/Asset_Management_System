@@ -73,7 +73,7 @@ const assetsSlice = createSlice({
                     // console.log(action);
                     state.assets = action.payload.assetResult
                     state.totalAssets = action.payload.count
-                    console.log(state.assets);
+                    // console.log(state.assets);
                 })
         }
 
