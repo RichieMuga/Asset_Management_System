@@ -28,7 +28,7 @@ h4{
     }
 }
 .more-info{
-        margin-left: 13.5em;
+        margin-left: 23.5em;
         margin-top: .6em;
     
 }
@@ -38,6 +38,16 @@ h4{
 .assetName{
     opacity: .8;
 }
+
+@media (min-width: 480px) {
+    .more-info{
+        margin-left: 25.5em;
+        margin-top: .6em;
+    
+}
+}
+
+
 
 `
 

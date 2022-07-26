@@ -80,16 +80,18 @@ const alertSlice = createSlice({
                 clearAlertAfterSomeTime();
 
             })
-            .addCase(createAsset.fulfilled, (state, action) => {
-                state.showAlert = true
-                state.alertType = 'success'
-                state.alertText = ' Asset created!'
-            })
-            .addCase(createAsset.rejected, (state, action) => {
-                state.alertType = 'danger'
-                state.showAlert = true
-                state.alertText = action.payload
-            })
+        // create Assets
+        // .addCase(createAsset.fulfilled, (state, action) => {
+        //     state.showAlert = true
+        //     state.alertType = 'success'
+        //     state.alertText = ' Asset created!'
+        // })
+        // .addCase(createAsset.rejected, (state, action) => {
+        //     state.alertType = 'danger'
+        //     state.showAlert = true
+        //     state.alertText = action.payload
+        // })
+
     }
 })
 

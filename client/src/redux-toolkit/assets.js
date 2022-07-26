@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { logOutUser } from "./loginAndregisterSlice";
 const initialState = {
     // assets in modal state
     isAssetStepperNext: false,
@@ -12,15 +13,33 @@ const initialState = {
     assetSN: '',
     condition: 'Good',
     address: 'Nairobi, Kenya',
-    warranty: false
+    warranty: false,
+
+    // get all jobs setup
+    assets: [],
+    totalAssets: 0,
+    numOfPages: 1,
+    page: 1
 }
 // create asset request
 export const createAsset = createAsyncThunk('/api/v1/assets', async (currentAsset, thunkAPI) => {
     try {
         const res = await axios.post('/api/v1/assets', currentAsset)
+        // console.log(res.data);
+        return res.data
+    } catch (error) {
+        thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+})
+// get all Assets
+
+export const getAssets = createAsyncThunk('/api/v1/assets', async (thunkAPI) => {
+    try {
+        const res = await axios.get('/api/v1/assets')
         console.log(res.data);
         return res.data
     } catch (error) {
+        logOutUser()
         thunkAPI.rejectWithValue(error.response.data.msg)
     }
 })
@@ -47,13 +66,16 @@ const assetsSlice = createSlice({
         },
         reset: () => initialState,
     },
-    // extraReducers:
-    //     (builder) => {
-    //         builder
-    //             .addCase(createAsset.fulfilled, (state, action) => {
-    //                 console.log("success");
-    //             })
-    //     }
+    extraReducers:
+        (builder) => {
+            builder
+                .addCase(getAssets.fulfilled, (state, action) => {
+                    // console.log(action);
+                    state.assets = action.payload.assetResult
+                    state.totalAssets = action.payload.count
+                    console.log(state.assets);
+                })
+        }
 
 })
 

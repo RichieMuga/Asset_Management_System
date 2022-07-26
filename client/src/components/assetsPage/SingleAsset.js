@@ -1,9 +1,9 @@
 import React from 'react'
 import Wrapper from '../../assets/Wrappers/assetsPage/SingleAsset'
 import { FiMoreVertical } from "react-icons/fi";
-import { VscCalendar } from "react-icons/vsc";
 import { HiTag } from "react-icons/hi"
 import { FaCalendarAlt } from "react-icons/fa"
+
 // FiMoreVertical
 // HiOutlineTag
 
