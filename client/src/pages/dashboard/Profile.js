@@ -63,7 +63,6 @@ const Profile = () => {
                         <FormRow type="email" name="email" value={email} labelText='Email' handleChange={(e) => setEmail(e.target.value)} />
                         <button className='clear-btn' onClick={handleClear}>clear</button>
                         <button className="btn-purple2" onClick={handleSubmit}>submit</button>
-
                     </div>
                 </form>
             </Wrapper>

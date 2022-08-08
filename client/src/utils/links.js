@@ -3,8 +3,7 @@
 // FaExchangeAlt
 // RiDeleteBin5Fill
 // ImProfile
-import { FaHome, FaUsers, FaExchangeAlt } from "react-icons/fa";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+import { FaHome, FaEdit } from "react-icons/fa";
 import { ImProfile } from "react-icons/im";
 
 
@@ -18,24 +17,12 @@ const links = [
     },
     {
         id: 2,
-        text: 'Users',
-        path: 'users',
-        icon: <FaUsers />,
+        text: 'Create/Edit asset',
+        path: 'edit',
+        icon: <FaEdit />
     },
     {
         id: 3,
-        text: 'Transfer',
-        path: 'transfer',
-        icon: <FaExchangeAlt />
-    },
-    {
-        id: 4,
-        text: 'Dispose',
-        path: 'dispose',
-        icon: <RiDeleteBin5Fill />,
-    },
-    {
-        id: 5,
         text: 'Profile',
         path: 'profile',
         icon: <ImProfile />,

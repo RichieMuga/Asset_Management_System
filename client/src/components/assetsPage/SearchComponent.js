@@ -1,42 +1,57 @@
 import React from 'react'
 import Wrapper from '../../assets/Wrappers/SearchComponent'
 import FormRow from '../FormRow'
-// GoPlus
-import { GoPlus } from "react-icons/go"
+import FormRowSelect from '../FormRowSelect'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleAssetSidebar } from '../../redux-toolkit/Dashboard'
-import CreateAssetsModal from './CreateAssetsModal'
+import { handleChange, reset } from '../../redux-toolkit/assets';
+import sortTypes from '../../utils/frontEnd/sortTypes';
 
 const SearchComponent = () => {
-  const dispatch = useDispatch()
+    const dispatch = useDispatch()
+    const { search, sort } = useSelector((store => store.assets))
 
-  const { isAssetModalOpen } = useSelector((store => store.dashboard))
+    const handleSearch = (e) => {
+        e.preventDefault()
+        const name = e.target.name
+        const value = e.target.value
+        dispatch(handleChange({ name, value }))
+    }
+    const clearSearch = (e) => {
+        e.preventDefault()
+        dispatch(reset())
+    }
 
-  //for testing onclick for create asset modal
-  const handleModal = (e) => {
-    e.preventDefault()
-    dispatch(toggleAssetSidebar())
-  }
-  const handleSearch = (e) => {
-    e.preventDefault()
-    console.log("search");
-  }
-  return (
-    <Wrapper>
-
-      <section  >
-        <button type="submit" className='createAsset' onClick={handleModal}><span className='plusSign'><GoPlus size={17} /> </span>  Create Asset</button>
-        {isAssetModalOpen && <CreateAssetsModal />}
-        {/* {isAssetModalOpen && <CreateAssetsModal />} */}
-      </section>
-      <form className='form-serious '>
-        <div className={`form-holder`}>
-          <FormRow type="text" placeholder={'search by name or tag'} className='width-min-form' />
-          <button type="submit" className='green-btn' onClick={handleSearch}>Search</button>
-        </div>
-      </form>
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <form className='form'>
+                {/* search position */}
+                <div className='form-center'>
+                    <FormRow
+                        type='text'
+                        name='search'
+                        value={search}
+                        handleChange={handleSearch}
+                        placeholder={'Search for assets here...'}
+                    ></FormRow>
+                    {/* sort */}
+                    <FormRowSelect
+                        name='sort'
+                        value={sort}
+                        handleChange={handleSearch}
+                        list={sortTypes}
+                    ></FormRowSelect>
+                    <button
+                        className='red-btn'
+                        // disabled={isLoading}
+                        onClick={clearSearch}
+                    >
+                        clear filters
+                    </button>
+                    {/* rest of the inputs */}
+                </div>
+            </form>
+        </Wrapper>
+    )
 }
 
 export default SearchComponent

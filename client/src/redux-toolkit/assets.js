@@ -14,6 +14,7 @@ const initialState = {
     condition: 'Good',
     address: 'Nairobi, Kenya',
     warranty: false,
+    createdAt: '',
 
     // get all jobs setup
     assets: [],
@@ -21,7 +22,17 @@ const initialState = {
     numOfPages: 1,
     page: 1,
     // trigger-refresh
-    refresh: false
+    refresh: false,
+    // toggle single page modal
+    singlePageModal: false,
+    // get assetId
+    assetId: '',
+    // is editing on?
+    isEdit: false,
+    // search
+    search: "",
+    sort: "latest"
+
 }
 // create asset request
 export const createAsset = createAsyncThunk('/api/v1/assets/createAsset', async (currentAsset, thunkAPI) => {
@@ -35,10 +46,42 @@ export const createAsset = createAsyncThunk('/api/v1/assets/createAsset', async 
 })
 // get all Assets
 
-export const getAssets = createAsyncThunk('/api/v1/assets/getAsset', async (thunkAPI) => {
+export const getAssets = createAsyncThunk('/api/v1/assets/getAsset', async ({ page }, thunkAPI) => {
     try {
-        const res = await axios.get('/api/v1/assets')
-        console.log(res.data);
+        const res = await axios.get(`/api/v1/assets?page=${page}`)
+        return res.data
+    } catch (error) {
+        logOutUser()
+        thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+})
+
+export const getSingleAsset = createAsyncThunk('/api/v1/assets/getSingleAsset', async (assetId, thunkAPI) => {
+    try {
+        const res = await axios.get(`/api/v1/assets/${assetId}`)
+        // console.log(res.data);
+        return res.data.asset
+    } catch (error) {
+        logOutUser()
+        thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+})
+
+export const editAsset = createAsyncThunk('/api/v1/assets/editAsset', async (currentAsset, thunkAPI) => {
+    try {
+        const res = await axios.patch(`/api/v1/assets/${currentAsset}`)
+        // console.log(res.data);
+        return res.data
+    } catch (error) {
+        logOutUser()
+        thunkAPI.rejectWithValue(error.response.data.msg)
+    }
+})
+
+export const deleteAsset = createAsyncThunk('/api/v1/assets/deleteAsset', async (currentAsset, thunkAPI) => {
+    try {
+        const res = await axios.patch(`/api/v1/assets/${currentAsset}`)
+        // console.log(res.data);
         return res.data
     } catch (error) {
         logOutUser()
@@ -69,6 +112,32 @@ const assetsSlice = createSlice({
         reset: () => initialState,
         setRefreshTofalse: (state, action) => {
             state.refresh = false
+        },
+        toggleSingleAssetModal: (state) => {
+            state.singlePageModal = !state.singlePageModal
+        },
+        getAssetId: (state, action) => {
+            // state.assetId = action.payload.assetId
+            const assetFind = state.assets.find((asset) => asset._id === action.payload.assetId)
+            const { asset_Name, assetType, tagNum, warranty, assetSN, model, address, condition, createdAt, _id } = assetFind
+            // console.log(address);
+            state.asset_Name = asset_Name
+            state.assetType = assetType
+            state.tagNum = tagNum
+            state.warranty = warranty
+            state.assetSN = assetSN
+            state.model = model
+            state.address = address
+            state.condition = condition
+            state.createdAt = createdAt
+            state.assetId = _id
+        },
+        editIsOn: (state) => {
+            state.isEdit = true
+        },
+        changePage: (state, action) => {
+            // console.log(action.payload);
+            state.page = action.payload
         }
     },
     extraReducers:
@@ -77,14 +146,29 @@ const assetsSlice = createSlice({
                 .addCase(getAssets.fulfilled, (state, action) => {
                     // console.log(action);
                     state.assets = action.payload.assetResult
-                    state.totalAssets = action.payload.count
+                    state.totalAssets = action.payload.totalAssets
                     state.refresh = true
+                    state.numOfPages = action.payload.numOfPages
                     // console.log(state.assets);
+                })
+                .addCase(getSingleAsset.fulfilled, (state, action) => {
+                    // console.log(action.payload);
+                    state.asset_Name = action.payload.asset_Name
+                    state.assetType = action.payload.assetType
+                    state.tagNum = action.payload.tagNum
+                    state.warranty = action.payload.warranty
+                    state.assetSN = action.payload.assetSN
+                    state.model = action.payload.model
+                    state.address = action.payload.address
+                    state.condition = action.payload.condition
+                    state.createdAt = action.payload.createdAt
+                    state.assetId = action.payload._id
+                    // console.log(state.assetSN);
                 })
         }
 
 })
 
-export const { toggleAssetSidebar, onClickNext, onClickPrevious, handleChange, reset, setRefreshTofalse } = assetsSlice.actions
+export const { changePage, editIsOn, toggleAssetSidebar, onClickNext, onClickPrevious, handleChange, reset, setRefreshTofalse, toggleSingleAssetModal, getAssetId, } = assetsSlice.actions
 
 export default assetsSlice.reducer

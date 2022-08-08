@@ -2,7 +2,7 @@ import Landing from "./pages/Landing";
 import Error from "./pages/Error"
 import RegisterAndLogin from "./pages/RegisterAndLogin";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Assets, DisposeAsset, SharedLayout, TransferAsset, Users, Profile } from './pages/dashboard'
+import { Assets, DisposeAsset, SharedLayout, EditAsset, Profile } from './pages/dashboard'
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
@@ -15,8 +15,7 @@ function App() {
             <SharedLayout />
           </ProtectedRoute>} >
           <Route path="assets" index element={<Assets />}></Route>
-          <Route path="transfer" element={<TransferAsset />}></Route>
-          <Route path="users" element={<Users />}></Route>
+          <Route path="edit" element={<EditAsset />}></Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="dispose" element={<DisposeAsset />}></Route>
         </Route>

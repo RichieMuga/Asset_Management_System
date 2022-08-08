@@ -22,6 +22,7 @@ h4{
 .container{
     display: flex;
     flex-direction: column;
+
     h4{
         /* grid-column-start: 1;
         grid-row-start: 0; */
@@ -41,6 +42,25 @@ h4{
 }
 .circle{
     margin-top:.35em;
+}
+.transparent{
+    width: 95%;
+    background-color: transparent;
+}
+.btn-purple-alt{
+  background-color: #4d4a91;
+  border: none;
+  color: white;
+  padding: 5px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-top: 2em;
+  width: 50%;
+  border-bottom-left-radius:20px;
+  
 }
  
 @media (min-width: 370px) {

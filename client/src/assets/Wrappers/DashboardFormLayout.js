@@ -48,6 +48,7 @@ const Wrapper = styled.section`
   .clear-btn:hover {
     opacity: .5;
   }
+
   @media (min-width: 992px) {
     .form-center {
       grid-template-columns: 1fr 1fr;

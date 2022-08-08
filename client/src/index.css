@@ -16,6 +16,7 @@
   --background-white: #e5f0fc;
   --jungle-green: #00a877;
   --jungle-green-helper: #52ad2b;
+  --deeper-red: #f62f30;
   --light-green: #39ff14;
   /* letter colors */
   --link-color: #0645ad;
@@ -34,6 +35,8 @@
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-4: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  /* letter spacing */
+  --letterSpacing: 2px;
 }
 
 body {
@@ -112,7 +115,19 @@ h5 {
 .green-btn:hover {
   opacity: 0.5;
 }
-
+.red-btn {
+  background: var(--deeper-red);
+  color: var(--font-white);
+  border-radius: var(--borderRadius);
+  padding: 0.2em 0.8em;
+  width: auto;
+  /* height: auto; */
+  /* padding: 0.2em 0.8em; */
+  /* height: 8em; */
+}
+.red-btn:hover {
+  opacity: 0.5;
+}
 .btn-purple:hover {
   cursor: pointer;
   background-color: #837df5;
@@ -217,4 +232,13 @@ h5 {
   font-size: 1.5rem;
   text-align: center;
   padding-bottom: 0.5em;
+}
+.grid-start {
+  grid-column-start: 1;
+}
+.form {
+  background: var(--font-white);
+  padding: 2em;
+  border-radius: 10px;
+  margin: 2em 0;
 }

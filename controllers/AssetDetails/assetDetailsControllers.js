@@ -9,39 +9,41 @@ require('dotenv').config()
 const getAllAssets = async (req, res) => {
     req.body.user = req.user.userId;
     // console.log(req.body.user);
-    const { sort, Warranty, Type, Model, Address, fields } = req.query
+    const { sort, Warranty, search } = req.query
     const reqQueryObject = {
         user: req.user.userId,
     }
     //
-    if (Warranty) {
-        reqQueryObject.Warranty = Warranty === 'true' ? true : false
+    // if (Warranty) {
+    //     reqQueryObject.Warranty = Warranty === 'true' ? true : false
+    // }
+    // //sort
+    // let result = AssetDetails.find(reqQueryObject)
+    // if (sort) {
+    //     const sortList = sort.split(',').join(' ')
+    //     result = result.sort(sortList)
+    // }
+    if (search) {
+        reqQueryObject.asset_Name = { $regex: search, $options: 'i' }
     }
-    if (Type) {
-        reqQueryObject.Type = Type
-    }
-    if (Model) {
-        reqQueryObject.Model = Model
-    }
-    if (Address) {
-        reqQueryObject.Address = Address
-    }
-
-    //sort
     let result = AssetDetails.find(reqQueryObject)
-    if (sort) {
-        const sortList = sort.split(',').join(' ')
-        result = result.sort(sortList)
+
+    if (sort === 'latest') {
+        result = result.sort('-createdAt')
     }
-    else {
+    if (sort === 'oldest') {
         result = result.sort('createdAt')
     }
-    if (fields) {
-        const fieldsList = fields.split(',').join(' ')
-        result = result.select(fieldsList)
+    if (sort === 'a-z') {
+        result = result.sort('asset_Name')
     }
+    if (sort === 'z-a') {
+        result = result.sort('-asset_Name')
+    }
+
+
     //pagination
-    const limit = Number(req.query.limit) || 10
+    const limit = Number(req.query.limit) || 9
     const page = Number(req.query.page) || 1
     const skip = Number(page - 1) * limit
 
@@ -49,8 +51,11 @@ const getAllAssets = async (req, res) => {
 
     const assetResult = await result
 
+    const totalAssets = await AssetDetails.countDocuments(reqQueryObject)
+    const numOfPages = Math.ceil(totalAssets / limit)
+
     //to make sure the assets of the same one company appear
-    res.status(StatusCodes.OK).json({ assetResult, count: assetResult.length })
+    res.status(StatusCodes.OK).json({ assetResult, totalAssets, numOfPages })
 
 }
 const createAsset = async (req, res) => {

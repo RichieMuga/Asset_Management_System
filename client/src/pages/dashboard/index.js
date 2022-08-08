@@ -1,9 +1,9 @@
 import Assets from './Assets';
 import DisposeAsset from './DisposeAsset';
 import SharedLayout from './SharedLayout';
-import TransferAsset from './TransferAsset';
+import EditAsset from './EditAsset';
 import Users from './Users';
 import Profile from './Profile';
 
 
-export { Assets, DisposeAsset, SharedLayout, TransferAsset, Users, Profile }
+export { Assets, DisposeAsset, SharedLayout, EditAsset, Users, Profile }
