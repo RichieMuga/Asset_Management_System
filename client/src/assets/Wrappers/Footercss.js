@@ -102,6 +102,15 @@ width: 100%;
   font-size: 0.652em;
   padding: 0.1em;
 }
-
+@media screen and (max-width:800px){
+  .vertical-line{
+    display: none;
+  }
+}
+@media screen and (max-width:520px){
+.footer .links .footer-grid-2 .footer-grid-2-section-1{
+  margin: 1em 3em;
+}
+}
 `
 export default Wrapper

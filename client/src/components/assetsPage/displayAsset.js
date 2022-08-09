@@ -10,7 +10,7 @@ import PageButtonContainer from './PageButtonContainer'
 
 
 const DisplayAsset = () => {
-    const { assets, totalAssets, refresh, numOfPages, page } = useSelector((store => store.assets))
+    const { assets, totalAssets, refresh, numOfPages, page, sort } = useSelector((store => store.assets))
     const { loading } = useSelector((store) => store.loading)
     const dispatch = useDispatch()
 
@@ -18,7 +18,7 @@ const DisplayAsset = () => {
     useEffect(() => {
         dispatch(getAssets({ page }))
         // eslint-disable-next-line 
-    }, [refresh, page])
+    }, [refresh, page, sort])
 
 
     if (loading) {

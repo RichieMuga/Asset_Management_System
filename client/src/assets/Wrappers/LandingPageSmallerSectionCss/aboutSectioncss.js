@@ -33,6 +33,11 @@ const Wrapper = styled.div`
     }
   }
 }
+@media screen and (max-width:880px) {
+  .services-page-child-2{
+    display: none;
+  }
+}
 `
 
 export default Wrapper

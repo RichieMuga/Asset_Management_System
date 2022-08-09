@@ -1,12 +1,9 @@
 import React from 'react'
 import logo from '../assets/svg/logo.svg'
 import headers from '../utils/header'
-// import { FiMail } from "react-icons/fi"
 import { HiClipboardCopy } from "react-icons/hi";
 import Wrapper from "../assets/Wrappers/Headercss"
 import { useState, useRef } from 'react';
-// FiMail
-// MdEmail
 
 
 

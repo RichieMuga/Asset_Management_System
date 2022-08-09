@@ -5,16 +5,17 @@ import FormRowSelect from '../FormRowSelect'
 import { useDispatch, useSelector } from 'react-redux'
 import { handleChange, reset } from '../../redux-toolkit/assets';
 import sortTypes from '../../utils/frontEnd/sortTypes';
-
+import { getAssets } from '../../redux-toolkit/assets'
 const SearchComponent = () => {
     const dispatch = useDispatch()
-    const { search, sort } = useSelector((store => store.assets))
+    const { search, sort, page } = useSelector((store => store.assets))
 
     const handleSearch = (e) => {
         e.preventDefault()
         const name = e.target.name
         const value = e.target.value
         dispatch(handleChange({ name, value }))
+        dispatch(getAssets({ page, search }))
     }
     const clearSearch = (e) => {
         e.preventDefault()

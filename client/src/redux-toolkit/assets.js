@@ -46,9 +46,17 @@ export const createAsset = createAsyncThunk('/api/v1/assets/createAsset', async 
 })
 // get all Assets
 
-export const getAssets = createAsyncThunk('/api/v1/assets/getAsset', async ({ page }, thunkAPI) => {
+export const getAssets = createAsyncThunk('/api/v1/assets/getAsset', async ({ page, search, sort }, thunkAPI) => {
+    let url = ``
+    if (search) {
+        url = `&search=${search}`
+    }
+    if (sort) {
+        url = url + `&sort=${sort}`
+    }
+
     try {
-        const res = await axios.get(`/api/v1/assets?page=${page}`)
+        const res = await axios.get(`/api/v1/assets?page=${page}${url}`)
         return res.data
     } catch (error) {
         logOutUser()
@@ -80,7 +88,7 @@ export const editAsset = createAsyncThunk('/api/v1/assets/editAsset', async (cur
 
 export const deleteAsset = createAsyncThunk('/api/v1/assets/deleteAsset', async (currentAsset, thunkAPI) => {
     try {
-        const res = await axios.patch(`/api/v1/assets/${currentAsset}`)
+        const res = await axios.delete(`/api/v1/assets/${currentAsset}`)
         // console.log(res.data);
         return res.data
     } catch (error) {

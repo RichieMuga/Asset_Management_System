@@ -79,6 +79,36 @@ a{
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
+@media screen and (max-width: 1188px) {
+.nav_links li{
+        padding: 0 2em;
+}
+.email-big-screen{
+  display: none;
+}
+}
+@media screen and (max-width: 980px) {
+.nav_links li{
+        padding: 0 1em;
+
+}
+}
+@media screen and (max-width: 588px) {
+.nav_links li{
+        padding: 0 .5em;
+}
+#button-copy{
+  display: none;
+}
+}
+@media screen and (max-width: 480px) {
+  header{
+    font-size: .9em;
+  }
+.nav_links li{
+        padding: 0 .2em;
+}
+}
 
 `
 export default Wrapper

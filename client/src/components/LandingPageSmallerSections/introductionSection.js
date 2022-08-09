@@ -56,8 +56,8 @@ const IntroductionSection = () => {
                     <IntroSVG />
                 </div>
                 <div className="introduction-child-2">
-                    <h2>WANT TO BETTER MANAGE YOUR COMPANY’S ASSETS?</h2>
-                    <p>
+                    <h2 className='heading'>WANT TO BETTER MANAGE YOUR COMPANY’S ASSETS?</h2>
+                    <p className='text'>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
                         dolorum, ipsum dolorem molestias rerum consectetur excepturi veniam
                         provident perspiciatis sed adipisci earum alias reprehenderit
@@ -66,7 +66,7 @@ const IntroductionSection = () => {
 
                 </div>
                 <div className="downArrow">
-                    <FaAngleDoubleDown />
+                    <FaAngleDoubleDown className='downArrow2' />
                 </div>
             </div>
         </Wrapper>

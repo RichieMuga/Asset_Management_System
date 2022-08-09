@@ -2,9 +2,10 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 .introduction {
-  margin-top: 1.8em;
+  margin-top: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   height: fit-content;
 
 
@@ -113,6 +114,55 @@ const Wrapper = styled.div`
       }
     }
   }
+}
+@media screen and (max-width: 1000px) {
+.introduction .introduction-child-2 h2{
+  font-size: 1.5em;
+}
+.introduction .introduction-child-2 p{
+  font-size: 1.15em;
+}
+}
+@media screen and (max-width: 700px) {
+    .heading{
+      display: none;
+    }
+    .text{
+      display: none;
+    }
+    .introduction-child-2{
+      grid-column-start: 1;
+    }
+    .introduction .downArrow{
+      display: none;
+    }
+    .btn-purple{
+      margin-left: 3em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+}
+@media screen and (max-width:600px){
+  .introduction{
+    display: block;
+    margin-bottom: 0;
+  }
+  .introduction-child-1{
+    display: none;
+  }
+  .introduction-child-1{
+    padding: 0;
+  }
+  .heading, .text{
+    display: inline-block;
+    text-align: center;
+    margin-top: 1em;
+  }
+  .text{
+    display: inline-block;
+    text-align: center;
+    }
 }
 `
 
