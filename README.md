@@ -1,4 +1,4 @@
-# ComboniHealthCare
+# Asset management system
 # Introduction 
 This application serves as an Asset Management System developed for companies, focusing on efficient asset tracking. For more insights, explore the [Git repository](https://github.com/RichieMuga/AssetManagementSystem/)
 
